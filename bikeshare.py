@@ -25,9 +25,9 @@ def get_filters():
 
         if city not in CITY_DATA.keys():
             print("\nInvalid input")
-          
+
             print(f"\nYou have chosen {city.title()} as your city.")
-   
+
 
     # TO DO: get user input for month (all, january, february, ... , june)
 
@@ -39,9 +39,9 @@ def get_filters():
 
         if month not in MONTH_DATA.keys():
             print("\nInvalid input.")
-        
+
             print(f"\nYou have chosen {month.title()} .")
-   
+
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     DAY_LIST = ['all', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
     day = ''
@@ -50,10 +50,10 @@ def get_filters():
         day = input().lower()
         if day not in DAY_LIST:
             print("\nInvalid input. Please try again in one of the accepted input formats.")
-           
+
             print(f"\nYou have chosen {day.title()}.")
-            
-  
+
+
     print('-'*40)
     return city, month, day
 
@@ -61,7 +61,7 @@ def get_filters():
 def load_data(city, month, day):
     """
     Loads data for the specified city and filters by month and day if applicable.
-    
+
 
     Args:
         (str) city - name of the city to analyze
@@ -79,15 +79,15 @@ def load_data(city, month, day):
 
     if(day != 'all'):
         df = df[df['day_name'] == day]
-    
+
     if(month != 'all'):
         df = df[df['month_name'] == month]
-    
+
 
     return df
 
 def time_stats(df):
-   
+
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
@@ -123,10 +123,10 @@ def station_stats(df):
     print('Most Popular End Station:', popular_EndStation)
 
     # TO DO: display most frequent combination of start station and end station trip
-    df['combinationstation']  = " From station " +df['Start Station'] +" to station "+ df['End Station'] 
+    df['combinationstation']  = " From station " +df['Start Station'] +" to station "+ df['End Station']
     popular_combinationstation = df['combinationstation'].mode()[0]
     print('Most Popular combinationstation:', popular_combinationstation)
-  
+
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -157,24 +157,24 @@ def user_stats(df,city):
     # TO DO: Display counts of user types
     subs=df[df['User Type']=='Subscriber']
     print('Display counts of Subscriber', subs.shape[0])
-   
+
     cust=df[df['User Type']=='Customer']
     print('Display counts of Customer', cust.shape[0])
-   
+
 
     # TO DO: Display counts of gender
     if (city != 'washington'):
         Gendermale=df[df['Gender']=='Male']
         print('Display counts of Male', Gendermale.shape[0])
-  
+
         GenderFemale=df[df['Gender']=='Female']
         print('Display counts of Female', GenderFemale.shape[0])
-    
+
     # TO DO: Display earliest, most recent, and most common year of birth
 
         earliestbirthyear= df.nlargest(1,columns='Birth Year')['Birth Year'].values[0]
         print('earliest year of birth:', earliestbirthyear)
- 
+
         recentbirthyear= df.nsmallest(1,columns='Birth Year')['Birth Year'].values[0]
         print('recent year of birth:', recentbirthyear)
 
@@ -182,12 +182,12 @@ def user_stats(df,city):
         print('most common year of birth:', commonbirthyear)
     else:
         print('there is no gender & birth year information in washington')
-  
+
 
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
+
 def random_users(df):
     view_data = input('\nWould you like to view 5 rows of individual trip data? Enter yes or no\n')
     view_data = view_data.lower()
@@ -223,3 +223,6 @@ def main():
 
 if __name__ == "__main__":
 	main()
+
+# test changes for github
+# test 2 changes
